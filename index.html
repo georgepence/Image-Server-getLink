@@ -9,16 +9,33 @@
 <a href="https://github.com/georgepence/Image-Server-getLink">
   https://github.com/georgepence/Image-Server-getLink</a>
 <p></p>
-<div id="image-div"></div>
+
+<!--This is the div where the image element and link will be inserted by-->
+<!--the script at the bottom-->
+
+<div id="image-div"></div><br/>
+
+<!--This div uses a link that simply returns an image from the server.  The image-->
+<!--is itself the response from the server - the server is sending a file.-->
+
+<div id="image-div-2">
+  <img  src='http://flip3.engr.oregonstate.edu:17778/getImage?response_type=file'
+        alt='random image 2'/>
+</div>
+
 <script>
+  // This script calls the server and receives a link to an image on the server.
+  // It then inserts that response (the link) into the 'image-div' element.
+  
   document.getElementById("image-div")
       .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
   fetch('http://flip3.engr.oregonstate.edu:17778/getImage?response_type=link')
       .then(res => res.json())
-      .then(data =>{
+      .then(data => {
         let imageDiv = document.getElementById("image-div")
-            .innerHTML = `<img src=${data} alt=random image /img>`
+            .innerHTML = `<img src=${data} alt='random image' />`
       })
+
 </script>
 </body>
 </html>
