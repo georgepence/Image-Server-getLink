@@ -1,10 +1,13 @@
 # Image-Server-getLink
-Example Javascript code to get a link to an image from the Image Server and insert it into HTML.   The server.js file is just here to serve index.html; 
-there is nothing to learn with server.js.    The index.html contains the javascript "fetch" to get an image link, and then inserts it in the "image-div" div 
-element.  
+Example Javascript code showing two ways to get an image from the Image Server and insert it into HTML.   The focus here is on index.html.  The server.js file is just here to serve index.html (there is nothing to learn with server.js).  All of the relevant javascript is in a 'script element' at the bottom of the html file.
 
-The image link is in a format "http://flip3.engr.oregonstate.edu:17778/image?image=6.jpeg", using the query "image=".  This results in the Microserver sending
-image file to the browser.  The fact that the "response" is a file means the client *can* accept the response and write it to a local client directory rather
-than simply rendering it, and then 
-serve from the local directory, or manipulate the image before serving.  I'll shortly post a second github with some sample code to write the response to disk.
- 
+Index.html shows two types of calls to the Image Server:
+
+1) The script makes a call with url query 'response_type=link'.  It takes that response (jsonized link text), parses it, and inserts the link into image-div as 'src'. The resulting call by the browser renders an image. 
+2) In image-div-2, the browser simply has a link to the server with query 'response_type=file'.  The server sends an image, and the browser renders it.
+
+Method one makes two calls to the server, but there may be advantages to having a link to an actual image.  If a second call needs to be made for that specific image, it will produce same image (whereas with method 2 a second call will produce a new random image).
+
+Either method eventually returns an actual image file, which raises a third possibility with its own advantages: The returned image could be saved by the client to a local directory.   This allows it to be called multiple times (without an http delay, or possibility of server failure), and also allows it to be resized or otherwise manipulated.
+
+In the next couple of days, I'll post some example code in another repository, how to save the returned image to a file using node's 'fs' code.
