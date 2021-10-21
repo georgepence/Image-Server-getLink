@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example Code</title>
+</head>
+<body>
+<p>Example code</p>
+<div id="image-div"></div>
+<script>
+  document.getElementById("image-div")
+      .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
+  fetch('http://flip3.engr.oregonstate.edu:17778/getImage?response_type=link')
+      .then(res => res.json())
+      .then(data =>{
+        let imageDiv = document.getElementById("image-div")
+            .innerHTML = `<img src=${data} alt=random image /img>`
+      })
+</script>
+</body>
+</html>
