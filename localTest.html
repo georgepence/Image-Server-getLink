@@ -31,48 +31,13 @@
 <br/>
 
 <p>searchTerms = 'bobcat', type = 'file'</p>
-<div id="image-div-5"></div>
+<div id="image-div-5">
+  <img  src='http://localhost:5000/getImage?searchTerms=bobcat&response_type=file'
+        alt='random image 5'/>
+</div>
 <br/>
 
-<script>
-  // This script calls the server and receives a link to an image on the server.
-  // It then inserts that response (the link) into the 'image-div' element.
-  
-  document.getElementById("image-div")
-      .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
-  fetch('http://localhost:5000/getImage?response_type=link')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("image-div")
-            .innerHTML = `<img src=${data} alt='random image' />`
-      })
+<script src="localTest.js"></script>
 
-  document.getElementById("image-div-3")
-      .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
-  fetch('http://localhost:5000/getImage?response_type=random')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("image-div-3")
-            .innerHTML = `<img src=${data} alt='random image' />`
-      })
-
-  document.getElementById("image-div-4")
-      .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
-  fetch('http://localhost:5000/getImage?response_type=link&searchTerms=cougar')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("image-div-4")
-            .innerHTML = `<img src=${data} alt='random image' />`
-      })
-  
-  document.getElementById("image-div-3")
-      .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
-  fetch('http://localhost:5000/getImage?response_type=file&searchTerms=bobcat')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("image-div-5")
-            .innerHTML = `<img src=${data} alt='random image' />`
-      })
-</script>
 </body>
 </html>
