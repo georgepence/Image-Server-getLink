@@ -32,7 +32,7 @@
   fetch('http://flip3.engr.oregonstate.edu:17778/getImage?response_type=link')
       .then(res => res.json())
       .then(data => {
-        let imageDiv = document.getElementById("image-div")
+        document.getElementById("image-div")
             .innerHTML = `<img src=${data} alt='random image' />`
       })
 

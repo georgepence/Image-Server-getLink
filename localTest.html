@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Image Server</title>
+</head>
+<body>
+<h2>Test Image Server during development</h2>
+<p></p>
+
+<!--This is the div where the image element and link will be inserted by-->
+<!--the script at the bottom-->
+<p>No search terms, type = 'link'</p>
+<div id="image-div"></div>
+<br/>
+
+<!--This div uses a link that simply returns an image from the server.  The image-->
+<!--is itself the response from the server - the server is sending a file.-->
+<p>No search terms, type = 'file'</p>
+<div id="image-div-2">
+<!--  <img  src='http://localhost:5000/getImage?response_type=file'-->
+<!--        alt='random image 2'/>-->
+</div>
+
+<p>No search terms, type = 'random'</p>
+<div id="image-div-3"></div>
+<br/>
+
+<p>searchTerms = 'cougar', type = 'link'</p>
+<div id="image-div-4"></div>
+<br/>
+
+<p>searchTerms = 'bobcat', type = 'file'</p>
+<div id="image-div-5"></div>
+<br/>
+
+<script>
+  // This script calls the server and receives a link to an image on the server.
+  // It then inserts that response (the link) into the 'image-div' element.
+  
+  document.getElementById("image-div")
+      .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
+  fetch('http://localhost:5000/getImage?response_type=link')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("image-div")
+            .innerHTML = `<img src=${data} alt='random image' />`
+      })
+
+  document.getElementById("image-div-3")
+      .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
+  fetch('http://localhost:5000/getImage?response_type=random')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("image-div-3")
+            .innerHTML = `<img src=${data} alt='random image' />`
+      })
+
+  document.getElementById("image-div-4")
+      .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
+  fetch('http://localhost:5000/getImage?response_type=link&searchTerms=cougar')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("image-div-4")
+            .innerHTML = `<img src=${data} alt='random image' />`
+      })
+  
+  document.getElementById("image-div-3")
+      .innerHTML = "<h2 style='color:mediumblue'>Loading...</h2>"
+  fetch('http://localhost:5000/getImage?response_type=file&searchTerms=bobcat')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("image-div-5")
+            .innerHTML = `<img src=${data} alt='random image' />`
+      })
+</script>
+</body>
+</html>
