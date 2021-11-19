@@ -11,3 +11,25 @@ Method one makes two calls to the server, but there may be advantages to having 
 Either method eventually returns an actual image file, which raises a third possibility with its own advantages: The returned image could be saved by the client to a local directory.   This allows it to be called multiple times (without an http delay, or possibility of server failure), and also allows it to be resized or otherwise manipulated.
 
 In the next couple of days, I'll post some example code in another repository, how to save the returned image to a file using node's 'fs' code.
+
+
+ ` _________________________      _________________________ `
+ `|App.js                   |    |App.js                   |`
+ `| _______________________ |    | _______________________ |`
+ `||NavBar.js              ||    ||NavBar.js              ||`
+ `| _______________________ |    | _______________________ |`
+ `||Home.js                ||    ||Exhibitions            ||`
+ `|| _____________________ ||    || _____________________ ||`
+ `||| Museums.js          |||    ||| MuseumExhibitions.js|||`
+ `||| ____   ____   ____  |||    ||| ____   ____   ____  |||`
+ `||||Card| |Card| |Card| |||    ||||Exhibitions.js    | |||`
+ `||||____| |____| |____| |||    ||||       Exhibit.js | |||`
+ `||| ____   ____   ____  |||    ||||       Exhibit.js | |||`
+ `||||Card| |Card| |Card| |||    ||||Exhibitions.js... | |||`
+ `||||____| |____| |____| |||    ||||__________________| |||`
+ `|||_____________________|||    |||_____________________|||`
+ `||_______________________||    ||_______________________||`
+ `| _______________________ |    | _______________________ |`
+ `||       Credits.js      ||    ||       Credits.js      ||`
+ `||_______________________||    ||_______________________||`
+ `|_________________________|    |_________________________|`
